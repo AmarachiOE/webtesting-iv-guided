@@ -9,7 +9,16 @@ module.exports = {
 };
 
 async function insert(hobbit) {
-  return null;
+  const ids = await db("hobbits").insert(hobbit);
+  return db("hobbits").where({ id: ids[0] }).first();
+
+  // or
+
+  
+// const [id] = await db("hobbits").insert(hobbit);
+// return db("hobbits").where({ id }).first();
+
+  
 }
 
 async function update(id, changes) {
